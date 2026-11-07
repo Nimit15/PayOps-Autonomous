@@ -1,0 +1,82 @@
+[
+  {
+    "id": "PROD-001",
+    "name": "AI Procurement Platform",
+    "type": "Service",
+    "category": "Software",
+    "createTime": "2025-01-15",
+    "updateTime": "2025-06-10",
+    "planCount": 3,
+    "avgMonthlyPrice": 116
+  },
+  {
+    "id": "PROD-002",
+    "name": "Milestone Invoicing Suite",
+    "type": "Service",
+    "category": "Software",
+    "createTime": "2025-02-01",
+    "updateTime": "2025-07-15",
+    "planCount": 3,
+    "avgMonthlyPrice": 209.31
+  },
+  {
+    "id": "PROD-003",
+    "name": "Analytics Command Center",
+    "type": "Digital",
+    "category": "Software",
+    "createTime": "2025-03-10",
+    "updateTime": "2025-08-20",
+    "planCount": 2,
+    "avgMonthlyPrice": 136.96
+  },
+  {
+    "id": "PROD-004",
+    "name": "Gantt Scheduler Pro",
+    "type": "Digital",
+    "category": "Software",
+    "createTime": "2025-04-01",
+    "updateTime": "2025-09-05",
+    "planCount": 2,
+    "avgMonthlyPrice": 91.13
+  },
+  {
+    "id": "PROD-005",
+    "name": "Dispute Triage Bot",
+    "type": "Service",
+    "category": "Software",
+    "createTime": "2025-05-15",
+    "updateTime": "2025-10-10",
+    "planCount": 1,
+    "avgMonthlyPrice": 129
+  },
+  {
+    "id": "PROD-006",
+    "name": "Reconciliation Engine",
+    "type": "Digital",
+    "category": "Software",
+    "createTime": "2025-06-01",
+    "updateTime": "2025-11-01",
+    "planCount": 1,
+    "avgMonthlyPrice": 89
+  },
+  {
+    "id": "PROD-007",
+    "name": "Channel3 Connector",
+    "type": "Service",
+    "category": "Integration",
+    "createTime": "2025-07-01",
+    "updateTime": "2025-11-15",
+    "planCount": 0,
+    "avgMonthlyPrice": 0
+  },
+  {
+    "id": "PROD-008",
+    "name": "PayPal SDK Wrapper",
+    "type": "Digital",
+    "category": "Library",
+    "createTime": "2025-08-01",
+    "updateTime": "2025-12-01",
+    "planCount": 0,
+    "avgMonthlyPrice": 0
+  }
+]

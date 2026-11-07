@@ -1,0 +1,134 @@
+[
+  {
+    "id": "PLAN-001",
+    "productId": "PROD-001",
+    "name": "Starter Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 49,
+    "monthlyPrice": 49,
+    "trialDays": 0,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-002",
+    "productId": "PROD-001",
+    "name": "Professional Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 199,
+    "monthlyPrice": 199,
+    "trialDays": 14,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-003",
+    "productId": "PROD-001",
+    "name": "Enterprise Annual",
+    "status": "Active",
+    "billingInterval": "Every year",
+    "price": 1999,
+    "monthlyPrice": 99.99,
+    "trialDays": 30,
+    "setupFee": 499
+  },
+  {
+    "id": "PLAN-004",
+    "productId": "PROD-002",
+    "name": "Starter Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 79,
+    "monthlyPrice": 79,
+    "trialDays": 0,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-005",
+    "productId": "PROD-002",
+    "name": "Professional Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 299,
+    "monthlyPrice": 299,
+    "trialDays": 14,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-006",
+    "productId": "PROD-002",
+    "name": "Enterprise Annual",
+    "status": "Active",
+    "billingInterval": "Every year",
+    "price": 2999,
+    "monthlyPrice": 249.92,
+    "trialDays": 30,
+    "setupFee": 999
+  },
+  {
+    "id": "PLAN-007",
+    "productId": "PROD-003",
+    "name": "Standard Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 149,
+    "monthlyPrice": 149,
+    "trialDays": 7,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-008",
+    "productId": "PROD-003",
+    "name": "Enterprise Annual",
+    "status": "Active",
+    "billingInterval": "Every year",
+    "price": 1499,
+    "monthlyPrice": 124.92,
+    "trialDays": 30,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-009",
+    "productId": "PROD-004",
+    "name": "Pro Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 99,
+    "monthlyPrice": 99,
+    "trialDays": 14,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-010",
+    "productId": "PROD-004",
+    "name": "Team Annual",
+    "status": "Active",
+    "billingInterval": "Every year",
+    "price": 999,
+    "monthlyPrice": 83.25,
+    "trialDays": 30,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-011",
+    "productId": "PROD-005",
+    "name": "Auto Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 129,
+    "monthlyPrice": 129,
+    "trialDays": 0,
+    "setupFee": 0
+  },
+  {
+    "id": "PLAN-012",
+    "productId": "PROD-006",
+    "name": "Recon Monthly",
+    "status": "Active",
+    "billingInterval": "Every month",
+    "price": 89,
+    "monthlyPrice": 89,
+    "trialDays": 7,
+    "setupFee": 0
+  }
+]

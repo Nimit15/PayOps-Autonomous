@@ -1,0 +1,167 @@
+[
+  {
+    "id": "DISP-0001",
+    "createTime": "2026-10-11T00:00:00.000Z",
+    "updateTime": "2026-11-10T00:00:00.000Z",
+    "status": "Resolved",
+    "amount": 19781.28,
+    "reason": "Merchandise Not Received",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -19781.28
+  },
+  {
+    "id": "DISP-0002",
+    "createTime": "2026-01-05T00:00:00.000Z",
+    "updateTime": "2026-01-31T00:00:00.000Z",
+    "status": "Waiting for Seller Response",
+    "amount": 2538.2,
+    "reason": "Unauthorized",
+    "channel": "Internal",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -2538.2
+  },
+  {
+    "id": "DISP-0003",
+    "createTime": "2026-09-27T00:00:00.000Z",
+    "updateTime": "2026-10-09T00:00:00.000Z",
+    "status": "Waiting for Buyer Response",
+    "amount": 4606.3,
+    "reason": "Merchandise Not Received",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -4606.3
+  },
+  {
+    "id": "DISP-0004",
+    "createTime": "2026-12-14T00:00:00.000Z",
+    "updateTime": "2027-01-01T00:00:00.000Z",
+    "status": "Under Review",
+    "amount": 6677.67,
+    "reason": "Unauthorized",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -6677.67
+  },
+  {
+    "id": "DISP-0005",
+    "createTime": "2026-11-12T00:00:00.000Z",
+    "updateTime": "2026-12-03T00:00:00.000Z",
+    "status": "Under Review",
+    "amount": 195710.45,
+    "reason": "Duplicate",
+    "channel": "External",
+    "outcome": "Seller Favored",
+    "signedAmount": -195710.45
+  },
+  {
+    "id": "DISP-0006",
+    "createTime": "2026-10-19T00:00:00.000Z",
+    "updateTime": "2026-11-12T00:00:00.000Z",
+    "status": "Resolved",
+    "amount": 1562.1,
+    "reason": "Unauthorized",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -1562.1
+  },
+  {
+    "id": "DISP-0007",
+    "createTime": "2026-10-14T00:00:00.000Z",
+    "updateTime": "2026-11-03T00:00:00.000Z",
+    "status": "Waiting for Seller Response",
+    "amount": 12027.84,
+    "reason": "Other",
+    "channel": "External",
+    "outcome": "Buyer Favored",
+    "signedAmount": -12027.84
+  },
+  {
+    "id": "DISP-0008",
+    "createTime": "2026-10-07T00:00:00.000Z",
+    "updateTime": "2026-10-14T00:00:00.000Z",
+    "status": "Waiting for Buyer Response",
+    "amount": 3157.85,
+    "reason": "Merchandise Not Received",
+    "channel": "External",
+    "outcome": "Seller Favored",
+    "signedAmount": -3157.85
+  },
+  {
+    "id": "DISP-0009",
+    "createTime": "2026-11-23T00:00:00.000Z",
+    "updateTime": "2026-11-28T00:00:00.000Z",
+    "status": "Resolved",
+    "amount": 1043.28,
+    "reason": "Merchandise Not Received",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -1043.28
+  },
+  {
+    "id": "DISP-0010",
+    "createTime": "2026-10-23T00:00:00.000Z",
+    "updateTime": "2026-10-31T00:00:00.000Z",
+    "status": "Under Review",
+    "amount": 11025.52,
+    "reason": "Merchandise Not Received",
+    "channel": "External",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -11025.52
+  },
+  {
+    "id": "DISP-0011",
+    "createTime": "2026-11-09T00:00:00.000Z",
+    "updateTime": "2026-11-10T00:00:00.000Z",
+    "status": "Waiting for Seller Response",
+    "amount": 267972.77,
+    "reason": "Not As Described",
+    "channel": "External",
+    "outcome": "Seller Favored",
+    "signedAmount": -267972.77
+  },
+  {
+    "id": "DISP-0012",
+    "createTime": "2026-11-08T00:00:00.000Z",
+    "updateTime": "2026-11-28T00:00:00.000Z",
+    "status": "Open",
+    "amount": 228830.68,
+    "reason": "Not As Described",
+    "channel": "External",
+    "outcome": "Seller Favored",
+    "signedAmount": -228830.68
+  },
+  {
+    "id": "DISP-0013",
+    "createTime": "2026-12-14T00:00:00.000Z",
+    "updateTime": "2027-01-01T00:00:00.000Z",
+    "status": "Open",
+    "amount": 3412.44,
+    "reason": "Duplicate",
+    "channel": "External",
+    "outcome": "Seller Favored",
+    "signedAmount": -3412.44
+  },
+  {
+    "id": "DISP-0014",
+    "createTime": "2026-10-12T00:00:00.000Z",
+    "updateTime": "2026-11-06T00:00:00.000Z",
+    "status": "Open",
+    "amount": 1526.33,
+    "reason": "Other",
+    "channel": "External",
+    "outcome": null,
+    "signedAmount": -1526.33
+  },
+  {
+    "id": "DISP-0015",
+    "createTime": "2026-12-12T00:00:00.000Z",
+    "updateTime": "2026-12-19T00:00:00.000Z",
+    "status": "Resolved",
+    "amount": 2035.39,
+    "reason": "Unauthorized",
+    "channel": "Internal",
+    "outcome": "Mutual Agreement",
+    "signedAmount": -2035.39
+  }
+]

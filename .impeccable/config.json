@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-07T12:34:07.688Z",
+        "reason": "Intentional choice for fintech dashboard - clean, readable, tabular-nums support for financial data display"
+      }
+    ]
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "generatedAt": "2026-11-07T15:22:20.863Z",
+  "totalTransactions": 250,
+  "totalRecords": 826,
+  "anomalies": [
+    {
+      "id": "A1",
+      "type": "double_entry_violation",
+      "table": "transactions",
+      "description": "Transaction with unbalanced debit/credit",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A2",
+      "type": "currency_mismatch",
+      "table": "invoicePayments",
+      "description": "Payment currency differs from invoice currency",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A3",
+      "type": "negative_inventory",
+      "table": "invoiceItems",
+      "description": "Line item quantity exceeds product inventory",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A4",
+      "type": "policy_cap_exceeded",
+      "table": "transactions",
+      "description": "Autonomous transaction exceeds $500 cap",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A5",
+      "type": "identity_theft",
+      "table": "customers",
+      "description": "Same email linked to multiple companies",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A6",
+      "type": "duplicate_invoice_number",
+      "table": "invoices",
+      "description": "Duplicate invoice number in different currencies",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A7",
+      "type": "future_dated",
+      "table": "transactions",
+      "description": "Transaction with future initiation date",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A8",
+      "type": "orphan_line_item",
+      "table": "invoiceItems",
+      "description": "Line item references non-existent invoice",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A9",
+      "type": "dispute_exceeds_invoice",
+      "table": "disputes",
+      "description": "Dispute amount exceeds original invoice total",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A10",
+      "type": "negative_balance",
+      "table": "balances",
+      "description": "Available balance less than withheld",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A11",
+      "type": "plan_pricing_inconsistency",
+      "table": "plans",
+      "description": "Annual plan monthly equivalent inconsistent",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A12",
+      "type": "subscription_without_plan",
+      "table": "plans",
+      "description": "Subscription references non-existent plan",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A13",
+      "type": "payment_without_invoice",
+      "table": "invoicePayments",
+      "description": "Payment references non-existent invoice",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A14",
+      "type": "refund_exceeds_payment",
+      "table": "invoicePayments",
+      "description": "Refund amount exceeds original payment",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A15",
+      "type": "excessive_fee",
+      "table": "transactions",
+      "description": "Transaction fee exceeds 10% of amount",
+      "severity": "CRITICAL",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A16",
+      "type": "zero_amount_invoice",
+      "table": "invoices",
+      "description": "Invoice total is zero but has line items",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A17",
+      "type": "customer_no_invoices",
+      "table": "customers",
+      "description": "Customer record with zero invoices",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    },
+    {
+      "id": "A18",
+      "type": "unknown_payout_recipient",
+      "table": "payouts",
+      "description": "Payout to unknown recipient without campaign",
+      "severity": "HIGH",
+      "detectableBy": [
+        "invariants",
+        "reconciliation",
+        "schema-validation",
+        "manual-review"
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "name": "customers",
+      "count": 25
+    },
+    {
+      "name": "invoices",
+      "count": 100
+    },
+    {
+      "name": "invoiceItems",
+      "count": 316
+    },
+    {
+      "name": "invoicePayments",
+      "count": 41
+    },
+    {
+      "name": "products",
+      "count": 8
+    },
+    {
+      "name": "plans",
+      "count": 12
+    },
+    {
+      "name": "transactions",
+      "count": 250
+    },
+    {
+      "name": "payouts",
+      "count": 33
+    },
+    {
+      "name": "balances",
+      "count": 8
+    },
+    {
+      "name": "disputes",
+      "count": 15
+    }
+  ]
+}

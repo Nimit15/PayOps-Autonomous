@@ -1,0 +1,371 @@
+[
+  {
+    "id": "REF-INV-0004-1",
+    "invoiceId": "INV-0004",
+    "kind": "Refund",
+    "method": "Credit Card",
+    "date": "2026-04-17",
+    "amount": 2350.48,
+    "signedAmount": -2350.48
+  },
+  {
+    "id": "PAY-INV-0006-1",
+    "invoiceId": "INV-0006",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-11-04",
+    "amount": 12187.3,
+    "signedAmount": 12187.3
+  },
+  {
+    "id": "PAY-INV-0008-1",
+    "invoiceId": "INV-0008",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2026-04-19",
+    "amount": 5439.28,
+    "signedAmount": 5439.28
+  },
+  {
+    "id": "REF-INV-0013-1",
+    "invoiceId": "INV-0013",
+    "kind": "Refund",
+    "method": "Bank Transfer",
+    "date": "2026-06-29",
+    "amount": 2126.08,
+    "signedAmount": -2126.08
+  },
+  {
+    "id": "PAY-INV-0024-1",
+    "invoiceId": "INV-0024",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2026-10-01",
+    "amount": 3722.48,
+    "signedAmount": 3722.48
+  },
+  {
+    "id": "PAY-INV-0026-1",
+    "invoiceId": "INV-0026",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-11-08",
+    "amount": 2978.62,
+    "signedAmount": 2978.62
+  },
+  {
+    "id": "REF-INV-0029-1",
+    "invoiceId": "INV-0029",
+    "kind": "Refund",
+    "method": "Bank Transfer",
+    "date": "2026-11-12",
+    "amount": 4658.8,
+    "signedAmount": -4658.8
+  },
+  {
+    "id": "PAY-INV-0030-1",
+    "invoiceId": "INV-0030",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-01-03",
+    "amount": 4351.2,
+    "signedAmount": 4351.2
+  },
+  {
+    "id": "PAY-INV-0030-2",
+    "invoiceId": "INV-0030",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-01-22",
+    "amount": 1740.48,
+    "signedAmount": 1740.48
+  },
+  {
+    "id": "PAY-INV-0031-1",
+    "invoiceId": "INV-0031",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-10-02",
+    "amount": 5455.6,
+    "signedAmount": 5455.6
+  },
+  {
+    "id": "PAY-INV-0033-1",
+    "invoiceId": "INV-0033",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-05-11",
+    "amount": 5504.4,
+    "signedAmount": 5504.4
+  },
+  {
+    "id": "PAY-INV-0034-1",
+    "invoiceId": "INV-0034",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-11-23",
+    "amount": 1170.78,
+    "signedAmount": 1170.78
+  },
+  {
+    "id": "PAY-INV-0034-2",
+    "invoiceId": "INV-0034",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-10-10",
+    "amount": 468.31,
+    "signedAmount": 468.31
+  },
+  {
+    "id": "REF-INV-0035-1",
+    "invoiceId": "INV-0035",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-10-23",
+    "amount": 326.4,
+    "signedAmount": -326.4
+  },
+  {
+    "id": "PAY-INV-0038-1",
+    "invoiceId": "INV-0038",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-09-29",
+    "amount": 1043.28,
+    "signedAmount": 1043.28
+  },
+  {
+    "id": "PAY-INV-0038-2",
+    "invoiceId": "INV-0038",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-10-23",
+    "amount": 417.31,
+    "signedAmount": 417.31
+  },
+  {
+    "id": "PAY-INV-0040-1",
+    "invoiceId": "INV-0040",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-09-04",
+    "amount": 3157.92,
+    "signedAmount": 3157.92
+  },
+  {
+    "id": "REF-INV-0044-1",
+    "invoiceId": "INV-0044",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-09-20",
+    "amount": 3389.6,
+    "signedAmount": -3389.6
+  },
+  {
+    "id": "REF-INV-0045-1",
+    "invoiceId": "INV-0045",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-09-27",
+    "amount": 1586,
+    "signedAmount": -1586
+  },
+  {
+    "id": "REF-INV-0046-1",
+    "invoiceId": "INV-0046",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-07-31",
+    "amount": 204142.25,
+    "signedAmount": -204142.25
+  },
+  {
+    "id": "PAY-INV-0047-1",
+    "invoiceId": "INV-0047",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-10-13",
+    "amount": 7912.51,
+    "signedAmount": 7912.51
+  },
+  {
+    "id": "REF-INV-0049-1",
+    "invoiceId": "INV-0049",
+    "kind": "Refund",
+    "method": "Bank Transfer",
+    "date": "2026-11-06",
+    "amount": 6828.6,
+    "signedAmount": -6828.6
+  },
+  {
+    "id": "REF-INV-0052-1",
+    "invoiceId": "INV-0052",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-02-14",
+    "amount": 3200.56,
+    "signedAmount": -3200.56
+  },
+  {
+    "id": "PAY-INV-0053-1",
+    "invoiceId": "INV-0053",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2026-10-27",
+    "amount": 3176.76,
+    "signedAmount": 3176.76
+  },
+  {
+    "id": "PAY-INV-0053-2",
+    "invoiceId": "INV-0053",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-09-25",
+    "amount": 1270.7,
+    "signedAmount": 1270.7
+  },
+  {
+    "id": "PAY-INV-0054-1",
+    "invoiceId": "INV-0054",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-05-29",
+    "amount": 302737.5,
+    "signedAmount": 302737.5
+  },
+  {
+    "id": "PAY-INV-0056-1",
+    "invoiceId": "INV-0056",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-12-02",
+    "amount": 15257.76,
+    "signedAmount": 15257.76
+  },
+  {
+    "id": "REF-INV-0062-1",
+    "invoiceId": "INV-0062",
+    "kind": "Refund",
+    "method": "Credit Card",
+    "date": "2026-09-13",
+    "amount": 2273.78,
+    "signedAmount": -2273.78
+  },
+  {
+    "id": "PAY-INV-0063-1",
+    "invoiceId": "INV-0063",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2026-11-14",
+    "amount": 376650.3,
+    "signedAmount": 376650.3
+  },
+  {
+    "id": "PAY-INV-0064-1",
+    "invoiceId": "INV-0064",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-12-05",
+    "amount": 874.92,
+    "signedAmount": 874.92
+  },
+  {
+    "id": "REF-INV-0066-1",
+    "invoiceId": "INV-0066",
+    "kind": "Refund",
+    "method": "Bank Transfer",
+    "date": "2026-08-03",
+    "amount": 5649.84,
+    "signedAmount": -5649.84
+  },
+  {
+    "id": "PAY-INV-0075-1",
+    "invoiceId": "INV-0075",
+    "kind": "Payment",
+    "method": "Wire Transfer",
+    "date": "2026-10-23",
+    "amount": 301093,
+    "signedAmount": 301093
+  },
+  {
+    "id": "PAY-INV-0078-1",
+    "invoiceId": "INV-0078",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-09-27",
+    "amount": 5639.02,
+    "signedAmount": 5639.02
+  },
+  {
+    "id": "PAY-INV-0091-1",
+    "invoiceId": "INV-0091",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-09-26",
+    "amount": 2286,
+    "signedAmount": 2286
+  },
+  {
+    "id": "PAY-INV-0095-1",
+    "invoiceId": "INV-0095",
+    "kind": "Payment",
+    "method": "Credit Card",
+    "date": "2026-09-26",
+    "amount": 889.68,
+    "signedAmount": 889.68
+  },
+  {
+    "id": "PAY-INV-0095-2",
+    "invoiceId": "INV-0095",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-10-26",
+    "amount": 355.87,
+    "signedAmount": 355.87
+  },
+  {
+    "id": "PAY-INV-0097-1",
+    "invoiceId": "INV-0097",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-11-05",
+    "amount": 1742.93,
+    "signedAmount": 1742.93
+  },
+  {
+    "id": "REF-INV-0098-1",
+    "invoiceId": "INV-0098",
+    "kind": "Refund",
+    "method": "PayPal",
+    "date": "2026-11-29",
+    "amount": 258,
+    "signedAmount": -258
+  },
+  {
+    "id": "PAY-INV-0099-1",
+    "invoiceId": "INV-0099",
+    "kind": "Payment",
+    "method": "Bank Transfer",
+    "date": "2026-11-08",
+    "amount": 7503,
+    "signedAmount": 7503
+  },
+  {
+    "id": "PAY-INV-0100-1",
+    "invoiceId": "INV-0100",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2026-09-26",
+    "amount": 7517.4,
+    "signedAmount": 7517.4
+  },
+  {
+    "id": "PAY-GHOST-001",
+    "invoiceId": "INV-NONEXISTENT-9999",
+    "kind": "Payment",
+    "method": "PayPal",
+    "date": "2025-06-15",
+    "amount": 5000,
+    "signedAmount": 5000
+  }
+]

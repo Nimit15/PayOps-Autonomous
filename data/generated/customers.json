@@ -1,0 +1,252 @@
+[
+  {
+    "id": "CUST-001",
+    "name": "Contact 1",
+    "company": "Acme Corporation",
+    "email": "acme.corporation@example.com",
+    "totalInvoiced": 15112.8,
+    "totalPaid": 7517.4,
+    "totalOutstanding": 7595.4,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-002",
+    "name": "Contact 2",
+    "company": "Globex Inc",
+    "email": "globex.inc@example.com",
+    "totalInvoiced": 22558.28,
+    "totalPaid": 20697.04,
+    "totalOutstanding": 1861.24,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-003",
+    "name": "Contact 3",
+    "company": "Wayne Enterprises",
+    "email": "wayne.enterprises@example.com",
+    "totalInvoiced": 6612.96,
+    "totalPaid": 0,
+    "totalOutstanding": 6612.96,
+    "invoiceCount": 2
+  },
+  {
+    "id": "CUST-004",
+    "name": "Contact 4",
+    "company": "Stark Industries",
+    "email": "stark.industries@example.com",
+    "totalInvoiced": 10299.56,
+    "totalPaid": 2978.62,
+    "totalOutstanding": 7320.94,
+    "invoiceCount": 2
+  },
+  {
+    "id": "CUST-005",
+    "name": "Contact 5",
+    "company": "Umbrella Corp",
+    "email": "umbrella.corp@example.com",
+    "totalInvoiced": 18177.2,
+    "totalPaid": 0,
+    "totalOutstanding": 6877.52,
+    "invoiceCount": 3
+  },
+  {
+    "id": "CUST-006",
+    "name": "Contact 6",
+    "company": "Cyberdyne Systems (ANOMALY)",
+    "email": "acme.corporation@example.com",
+    "totalInvoiced": 633970.34,
+    "totalPaid": 376650.3,
+    "totalOutstanding": 257320.04,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-007",
+    "name": "Contact 7",
+    "company": "Oscorp Industries",
+    "email": "oscorp.industries@example.com",
+    "totalInvoiced": 18523.2,
+    "totalPaid": 2286,
+    "totalOutstanding": 2580,
+    "invoiceCount": 6
+  },
+  {
+    "id": "CUST-008",
+    "name": "Contact 8",
+    "company": "LexCorp",
+    "email": "lexcorp@example.com",
+    "totalInvoiced": 24283.52,
+    "totalPaid": 0,
+    "totalOutstanding": 23630.72,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-009",
+    "name": "Contact 9",
+    "company": "WayneTech",
+    "email": "waynetech@example.com",
+    "totalInvoiced": 8606,
+    "totalPaid": 0,
+    "totalOutstanding": 8606,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-010",
+    "name": "Contact 10",
+    "company": "Stark Solutions",
+    "email": "stark.solutions@example.com",
+    "totalInvoiced": 312043.5,
+    "totalPaid": 304480.43,
+    "totalOutstanding": 1161.95,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-011",
+    "name": "Contact 11",
+    "company": "Aperture Science",
+    "email": "aperture.science@example.com",
+    "totalInvoiced": 5459.84,
+    "totalPaid": 0,
+    "totalOutstanding": 5459.84,
+    "invoiceCount": 2
+  },
+  {
+    "id": "CUST-012",
+    "name": "Contact 12",
+    "company": "Black Mesa",
+    "email": "black.mesa@example.com",
+    "totalInvoiced": 23218.46,
+    "totalPaid": 5639.02,
+    "totalOutstanding": 6099.28,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-013",
+    "name": "Contact 13",
+    "company": "Massive Dynamic",
+    "email": "massive.dynamic@example.com",
+    "totalInvoiced": 17978.18,
+    "totalPaid": 12187.3,
+    "totalOutstanding": 5790.88,
+    "invoiceCount": 2
+  },
+  {
+    "id": "CUST-014",
+    "name": "Contact 14",
+    "company": "Weyland-Yutani",
+    "email": "weyland-yutani@example.com",
+    "totalInvoiced": 26239.42,
+    "totalPaid": 1170.78,
+    "totalOutstanding": 25068.64,
+    "invoiceCount": 6
+  },
+  {
+    "id": "CUST-015",
+    "name": "Contact 15",
+    "company": "Tyrell Corp",
+    "email": "tyrell.corp@example.com",
+    "totalInvoiced": 0,
+    "totalPaid": 0,
+    "totalOutstanding": 0,
+    "invoiceCount": 1
+  },
+  {
+    "id": "CUST-016",
+    "name": "Contact 16",
+    "company": "Soylent Corp",
+    "email": "soylent.corp@example.com",
+    "totalInvoiced": 14414.4,
+    "totalPaid": 0,
+    "totalOutstanding": 11242.4,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-017",
+    "name": "Contact 17",
+    "company": "Initech",
+    "email": "initech@example.com",
+    "totalInvoiced": 1346578.02,
+    "totalPaid": 7912.51,
+    "totalOutstanding": 1338665.51,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-018",
+    "name": "Contact 18",
+    "company": "Hooli",
+    "email": "hooli@example.com",
+    "totalInvoiced": 13734.29,
+    "totalPaid": 7503,
+    "totalOutstanding": 6231.29,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-019",
+    "name": "Contact 19",
+    "company": "Pied Piper",
+    "email": "pied.piper@example.com",
+    "totalInvoiced": 12296.6,
+    "totalPaid": 7377.96,
+    "totalOutstanding": 4918.64,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-020",
+    "name": "Contact 20",
+    "company": "Hooli XYZ",
+    "email": "hooli.xyz@example.com",
+    "totalInvoiced": 8710.2,
+    "totalPaid": 5226.12,
+    "totalOutstanding": 3484.08,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-021",
+    "name": "Contact 21",
+    "company": "Soylent Green",
+    "email": "soylent.green@example.com",
+    "totalInvoiced": 413740.1,
+    "totalPaid": 5455.6,
+    "totalOutstanding": 0,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-022",
+    "name": "Contact 22",
+    "company": "Cybertron",
+    "email": "cybertron@example.com",
+    "totalInvoiced": 612032.44,
+    "totalPaid": 301093,
+    "totalOutstanding": 302139.72,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-023",
+    "name": "Contact 23",
+    "company": "Skynet",
+    "email": "skynet@example.com",
+    "totalInvoiced": 15730,
+    "totalPaid": 5504.4,
+    "totalOutstanding": 10225.6,
+    "invoiceCount": 5
+  },
+  {
+    "id": "CUST-024",
+    "name": "Contact 24",
+    "company": "HAL Systems",
+    "email": "hal.systems@example.com",
+    "totalInvoiced": 13040.08,
+    "totalPaid": 3722.48,
+    "totalOutstanding": 0,
+    "invoiceCount": 4
+  },
+  {
+    "id": "CUST-025",
+    "name": "Contact 25",
+    "company": "Ghost Corp (ANOMALY - No Invoices)",
+    "email": "deep.thought@example.com",
+    "totalInvoiced": 1998.8,
+    "totalPaid": 889.68,
+    "totalOutstanding": 593.12,
+    "invoiceCount": 3
+  }
+]

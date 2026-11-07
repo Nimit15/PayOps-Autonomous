@@ -1,0 +1,332 @@
+[
+  {
+    "id": "TXN-000010",
+    "campaign": "Marketing",
+    "recipient": "wayne.enterprises@example.com",
+    "date": "2025-04-22",
+    "status": "Pending",
+    "amount": 3650.59,
+    "fee": 82.14,
+    "note": "Autonomous transaction"
+  },
+  {
+    "id": "TXN-000024",
+    "campaign": "Sales",
+    "recipient": "aperture.science@example.com",
+    "date": "2025-08-31",
+    "status": "Partially Refunded",
+    "amount": 506506,
+    "fee": 11244.43,
+    "note": "Autonomous transaction"
+  },
+  {
+    "id": "TXN-000034",
+    "campaign": "Partnerships",
+    "recipient": "initech@example.com",
+    "date": "2025-05-07",
+    "status": "Partially Refunded",
+    "amount": 763.8,
+    "fee": 23.14,
+    "note": "Autonomous transaction"
+  },
+  {
+    "id": "TXN-000040",
+    "campaign": "Other",
+    "recipient": "hooli@example.com",
+    "date": "2025-04-30",
+    "status": "Pending",
+    "amount": 6698.66,
+    "fee": 170.82,
+    "note": "Autonomous transaction"
+  },
+  {
+    "id": "TXN-000056",
+    "campaign": "Operations",
+    "recipient": "waynetech@example.com",
+    "date": "2025-03-22",
+    "status": "Denied",
+    "amount": 684.14,
+    "fee": 12.11,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000067",
+    "campaign": "Sales",
+    "recipient": "stark.industries@example.com",
+    "date": "2025-12-01",
+    "status": "Reversed",
+    "amount": 2040.56,
+    "fee": 28.16,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000068",
+    "campaign": "Marketing",
+    "recipient": "Unknown",
+    "date": "2025-08-18",
+    "status": "Denied",
+    "amount": 210.32,
+    "fee": 2.97,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000071",
+    "campaign": "Other",
+    "recipient": "oscorp.industries@example.com",
+    "date": "2025-07-03",
+    "status": "Denied",
+    "amount": 1482.83,
+    "fee": 13.79,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000081",
+    "campaign": "Marketing",
+    "recipient": "hooli@example.com",
+    "date": "2025-11-15",
+    "status": "Partially Refunded",
+    "amount": 5137.6,
+    "fee": 80.15,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000085",
+    "campaign": "Sales",
+    "recipient": "hooli.xyz@example.com",
+    "date": "2025-12-28",
+    "status": "Success",
+    "amount": 2509.83,
+    "fee": 76.3,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000088",
+    "campaign": "Partnerships",
+    "recipient": "acme.corporation@example.com",
+    "date": "2025-06-11",
+    "status": "Success",
+    "amount": 5272.88,
+    "fee": 138.68,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000090",
+    "campaign": "Operations",
+    "recipient": "hal.systems@example.com",
+    "date": "2025-12-29",
+    "status": "Reversed",
+    "amount": 5613.36,
+    "fee": 142.02,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000091",
+    "campaign": "Sales",
+    "recipient": "black.mesa@example.com",
+    "date": "2025-07-12",
+    "status": "Success",
+    "amount": 371.3,
+    "fee": 9.84,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000096",
+    "campaign": "Partnerships",
+    "recipient": "soylent.green@example.com",
+    "date": "2025-08-07",
+    "status": "Reversed",
+    "amount": 460,
+    "fee": 3.13,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000100",
+    "campaign": "Engineering",
+    "recipient": "waynetech@example.com",
+    "date": "2025-05-01",
+    "status": "Partially Refunded",
+    "amount": 2201.56,
+    "fee": 36.77,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000114",
+    "campaign": "Other",
+    "recipient": "aperture.science@example.com",
+    "date": "2025-04-29",
+    "status": "Reversed",
+    "amount": 3082.92,
+    "fee": 55.49,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000119",
+    "campaign": "Engineering",
+    "recipient": "lexcorp@example.com",
+    "date": "2025-05-02",
+    "status": "Success",
+    "amount": 4477.92,
+    "fee": 152.25,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000120",
+    "campaign": "Engineering",
+    "recipient": "deep.thought@example.com",
+    "date": "2025-03-08",
+    "status": "Reversed",
+    "amount": 5068.72,
+    "fee": 25.85,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000124",
+    "campaign": "Sales",
+    "recipient": "initech@example.com",
+    "date": "2025-07-02",
+    "status": "Reversed",
+    "amount": 2065,
+    "fee": 32.21,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000134",
+    "campaign": "Operations",
+    "recipient": "waynetech@example.com",
+    "date": "2025-12-11",
+    "status": "Partially Refunded",
+    "amount": 3400.32,
+    "fee": 109.49,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000135",
+    "campaign": "Operations",
+    "recipient": "aperture.science@example.com",
+    "date": "2025-02-10",
+    "status": "Partially Refunded",
+    "amount": 3614,
+    "fee": 75.53,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000145",
+    "campaign": "Operations",
+    "recipient": "globex.inc@example.com",
+    "date": "2025-01-18",
+    "status": "Partially Refunded",
+    "amount": 443865.5,
+    "fee": 8255.9,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000152",
+    "campaign": "Operations",
+    "recipient": "massive.dynamic@example.com",
+    "date": "2025-10-29",
+    "status": "Pending",
+    "amount": 2493.24,
+    "fee": 23.44,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000155",
+    "campaign": "Engineering",
+    "recipient": "tyrell.corp@example.com",
+    "date": "2025-06-12",
+    "status": "Reversed",
+    "amount": 6586.48,
+    "fee": 94.85,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000160",
+    "campaign": "Engineering",
+    "recipient": "acme.corporation@example.com",
+    "date": "2025-03-19",
+    "status": "Denied",
+    "amount": 4120,
+    "fee": 69.22,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000161",
+    "campaign": "Operations",
+    "recipient": "lexcorp@example.com",
+    "date": "2025-04-04",
+    "status": "Denied",
+    "amount": 59.28,
+    "fee": 1.96,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000199",
+    "campaign": "Marketing",
+    "recipient": "pied.piper@example.com",
+    "date": "2025-03-19",
+    "status": "Denied",
+    "amount": 1348.53,
+    "fee": 4.72,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000211",
+    "campaign": "Other",
+    "recipient": "massive.dynamic@example.com",
+    "date": "2025-08-23",
+    "status": "Success",
+    "amount": 2106.8,
+    "fee": 31.6,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000220",
+    "campaign": "Other",
+    "recipient": "wayne.enterprises@example.com",
+    "date": "2025-04-05",
+    "status": "Success",
+    "amount": 111.22,
+    "fee": 0.61,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000224",
+    "campaign": "Engineering",
+    "recipient": "lexcorp@example.com",
+    "date": "2025-06-18",
+    "status": "Partially Refunded",
+    "amount": 2574.61,
+    "fee": 15.45,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000227",
+    "campaign": "Other",
+    "recipient": "initech@example.com",
+    "date": "2025-11-23",
+    "status": "Partially Refunded",
+    "amount": 87.69,
+    "fee": 0.85,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "TXN-000246",
+    "campaign": "Operations",
+    "recipient": "Unknown",
+    "date": "2025-05-20",
+    "status": "Partially Refunded",
+    "amount": 4304.64,
+    "fee": 33.15,
+    "note": "Manual transaction"
+  },
+  {
+    "id": "PAYOUT-ANOMALY-001",
+    "campaign": "Unknown",
+    "recipient": "Unknown (ANOMALY)",
+    "date": "2025-07-15",
+    "status": "Success",
+    "amount": 10000,
+    "fee": 50,
+    "note": "Payout without campaign or known recipient"
+  }
+]
