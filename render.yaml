@@ -1,0 +1,104 @@
+# Render Workflows Configuration for PayOps Autonomous
+# Deploys Next.js app, background webhook workers, and Redis
+# Render Workflows: background webhook orchestration, SSE updates
+
+services:
+  # Main Next.js Application
+  - type: web
+    name: payops-autonomous
+    runtime: node
+    repo: https://github.com/your-org/payops-autonomous
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: PAYPAL_SANDBOX_BASE_URL
+        value: https://api-m.sandbox.paypal.com
+      - key: CHANNEL3_API_KEY
+        sync: false
+      - key: CHANNEL3_DEFAULT_COUNTRY
+        value: US
+      - key: CHANNEL3_DEFAULT_CURRENCY
+        value: USD
+      - key: CHANNEL3_DEFAULT_LANGUAGE
+        value: en
+      - key: NEXT_PUBLIC_APP_URL
+        fromService:
+          type: web
+          name: payops-autonomous
+          property: host
+    autoDeploy: true
+    plan: starter
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+
+  # Background Webhook Worker - processes PayPal webhooks asynchronously
+  - type: backgroundWorker
+    name: payops-webhook-worker
+    runtime: node
+    repo: https://github.com/your-org/payops-autonomous
+    branch: main
+    buildCommand: npm ci
+    startCommand: npm run worker:webhooks
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: PAYPAL_SANDBOX_BASE_URL
+        value: https://api-m.sandbox.paypal.com
+      - key: CHANNEL3_API_KEY
+        sync: false
+    autoDeploy: true
+    plan: starter
+
+  # Scheduled Tasks Worker - cron jobs for reconciliation, overdue checks
+  - type: cronJob
+    name: payops-scheduled-tasks
+    runtime: node
+    repo: https://github.com/your-org/payops-autonomous
+    branch: main
+    buildCommand: npm ci
+    startCommand: npm run worker:scheduled
+    schedule: "*/15 * * * *"  # Every 15 minutes
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: PAYPAL_SANDBOX_BASE_URL
+        value: https://api-m.sandbox.paypal.com
+    autoDeploy: true
+    plan: starter
+
+  # Redis for caching, session storage, and SSE pub/sub
+  - type: redis
+    name: payops-redis
+    plan: starter
+    maxmemoryPolicy: allkeys-lru
+    ipAllowList: []
+
+# Environment Groups (set these in Render Dashboard → Environment Groups)
+# payops-secrets: PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, CHANNEL3_API_KEY
+
+# Deployment hooks (configure in Render Dashboard)
+# Pre-deploy: npm run db:migrate (if using database)
+# Post-deploy: npm run paypal:doctor (verify deployment)
