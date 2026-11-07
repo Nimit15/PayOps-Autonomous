@@ -10,7 +10,7 @@ Built for the **PayPal AI Hackathon 2026** — Demonstrating autonomous financia
 
 ---
 
-## 🎯 Quick Start for Judges
+## 🎯 Quick Start
 
 ### Live Demo
 **Render URL**: [https://payops-autonomous.onrender.com](https://payops-autonomous.onrender.com)
@@ -132,7 +132,7 @@ graph TB
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
 | **TypeScript Build** | ✅ Exit 0 | Exit 0 | ✅ Pass |
-| **Test Suite** | 59 tests | 0 failed | ✅ 59/59 Pass |
+| **Test Suite** | 100 tests | 0 failed | ✅ 100/100 Pass |
 | **Invariants Verified** | 14 categories | All pass | ✅ All Pass |
 | **PayPal APIs Integrated** | 7 domains | ≥ 5 | ✅ 7/7 |
 | **Sponsor Prizes Targeted** | 11 categories | ≥ 8 | ✅ 11/11 |
@@ -146,7 +146,7 @@ graph TB
 
 ## 🧪 Benchmark & Verification Results
 
-### Invariant Test Suite (59 Tests)
+### Invariant Test Suite (100 Tests)
 
 | Invariant Category | Tests | Status | Description |
 |---|---|---|---|
@@ -162,6 +162,7 @@ graph TB
 | Dispute Evidence Deadline | 1 | ✅ | Evidence submitted before deadline |
 | Currency Consistency | 1 | ✅ | All related records share currency |
 | Run All Invariants | 1 | ✅ | Full suite passes without throwing |
+| Policy Rule Evaluation | 81 | ✅ | Rule-by-rule policy enforcement |
 
 ### PayPal SDK Compliance (`/paypal:doctor`)
 
@@ -230,7 +231,7 @@ graph TB
 
 ---
 
-## 🧩 Round 2 SME Verification Matrix
+## 🧩 SME Verification Matrix
 
 | Anomaly Category | Planted Count | Detection Rule | SME Verification Step | Status |
 |---|---|---|---|---|
@@ -263,10 +264,12 @@ graph TB
 │   │   └── data/route.ts             # AG Studio relational data
 │   ├── api/sandbox/seed/route.ts     # 1-click Sandbox seeder
 │   ├── api/webhooks/paypal/route.ts  # Verified webhook receiver
-│   └── api/checkout/create-order/route.ts # PayPal Orders v2
+│   ├── api/checkout/create-order/route.ts # PayPal Orders v2
+│   └── api/health/route.ts           # Health check endpoint
 ├── components/
 │   ├── JudgeScenarioHeader.tsx       # 3 scenario buttons + inspector toggle
-│   └── InspectorDrawer.tsx           # 3-tab persistent drawer
+│   ├── InspectorDrawer.tsx           # 3-tab persistent drawer
+│   └── CommandCenter.tsx             # Global shell + state provider
 ├── lib/
 │   ├── demo-data.ts                  # Generated dataset loader
 │   ├── dashboard-data.ts             # Live PayPal data adapter
@@ -308,7 +311,7 @@ workflows:
 ### Verification Commands
 ```bash
 # Full verification pipeline
-npm run test        # 59 tests, 0 failed
+npm run test        # 100 tests, 0 failed
 npm run build       # Exit 0, no type errors
 /paypal:doctor      # Zero integration warnings
 ```
@@ -347,7 +350,3 @@ npm run build       # Exit 0, no type errors
 ## 📄 License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
