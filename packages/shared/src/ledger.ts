@@ -160,6 +160,13 @@ export class DoubleEntryLedger {
     this.transactions.clear();
     this.entries.clear();
   }
+
+  /**
+   * Get all ledger entries
+   */
+  getAllEntries(): LedgerEntry[] {
+    return Array.from(this.entries.values());
+  }
 }
 
 // Singleton instance

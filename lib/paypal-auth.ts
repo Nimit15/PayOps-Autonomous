@@ -78,4 +78,11 @@ class PayPalAuthManager {
 }
 
 export const paypalAuth = PayPalAuthManager.getInstance();
+
+// Export getPayPalClient for compatibility with routes that expect it
+export async function getPayPalClient(): Promise<{ accessToken: string }> {
+  const accessToken = await paypalAuth.getAccessToken();
+  return { accessToken };
+}
+
 export default paypalAuth;

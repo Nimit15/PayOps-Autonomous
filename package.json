@@ -14,7 +14,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "paypal:doctor": "node scripts/paypal-doctor.js",
+    "paypal:doctor": "tsx scripts/paypal-doctor.ts",
     "paypal:setup": "node scripts/paypal-setup.js",
     "seed:sandbox": "node scripts/seed-sandbox.js",
     "worker:webhooks": "node scripts/worker-webhooks.js",
