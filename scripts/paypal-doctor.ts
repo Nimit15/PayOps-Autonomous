@@ -3,6 +3,14 @@
 // Validates all PayPal sandbox credentials, API connectivity, and webhook configuration
 
 import 'dotenv/config';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import * as fs from 'fs';
+
+// Load .env and .env.local from repo root
+const repoRoot = path.resolve(__dirname, '..');
+dotenv.config({ path: path.join(repoRoot, '.env') });
+dotenv.config({ path: path.join(repoRoot, '.env.local'), override: true });
 import { PayPalAuthManager } from '../lib/paypal-auth';
 import {
   getBalances,

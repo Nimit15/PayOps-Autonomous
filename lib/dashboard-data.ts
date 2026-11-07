@@ -4,16 +4,19 @@
 import {
   amountOf,
   getBalances,
+  listDisputes,
   listInvoices,
   listPlans,
   listProducts,
   searchTransactions,
   TRANSACTION_SEARCH_MAX_DAYS,
   type Balances,
+  type Dispute,
   type Invoice,
   type InvoiceStatus,
   type Plan,
   type Product,
+  type ShippingTracker,
   type Transaction,
 } from './paypal-client';
 
@@ -168,6 +171,21 @@ function invoicePaymentRows(invoices: Invoice[]) {
   ]);
 }
 
+// Dispute transformation
+function disputeRows(disputes: Dispute[]) {
+  return disputes.map((d) => ({
+    id: d.dispute_id,
+    createTime: d.create_time,
+    updateTime: d.update_time,
+    status: humanise(d.status),
+    amount: amountOf(d.dispute_amount),
+    reason: d.reason,
+    channel: d.dispute_channel,
+    outcome: d.dispute_outcome?.outcome_code ? humanise(d.dispute_outcome.outcome_code) : null,
+    signedAmount: -amountOf(d.dispute_amount), // Negative for dispute exposure
+  }));
+}
+
 // Catalog transformation
 const MONTHS_PER_INTERVAL: Record<string, number> = {
   DAY: 12 / 365,
@@ -300,15 +318,17 @@ export interface DashboardData {
   transactions: ReturnType<typeof transactionRows>;
   payouts: ReturnType<typeof payoutRows>;
   balances: ReturnType<typeof balanceRows>;
+  disputes: ReturnType<typeof disputeRows>;
 }
 
 export async function getDashboardData(asOf = new Date()): Promise<DashboardData> {
-  const [products, plans, invoices, transactions, balances] = await Promise.all([
+  const [products, plans, invoices, transactions, balances, disputes] = await Promise.all([
     listProducts(),
     listPlans(),
     listInvoices(),
     searchTransactions(new Date(asOf.getTime() - TRANSACTION_WINDOW_MS), asOf),
     getBalances(),
+    listDisputes(),
   ]);
   const today = asOf.toISOString().slice(0, 10);
 
@@ -323,47 +343,277 @@ export async function getDashboardData(asOf = new Date()): Promise<DashboardData
     transactions: transactionRows(transactions),
     payouts: payoutRows(transactions),
     balances: balanceRows(balances),
+    disputes: disputeRows(disputes),
   };
 }
 
-// AG Studio data source definitions
-export function createDataSources(data: DashboardData) {
+// AG Studio data source definitions - Full AgDataSourcesDefinition compatible
+export function buildStudioData(data: DashboardData) {
   return {
     sources: [
-      { id: 'customers', data: data.customers },
-      { id: 'invoices', data: data.invoices },
-      { id: 'invoiceItems', data: data.invoiceItems },
-      { id: 'invoicePayments', data: data.invoicePayments },
-      { id: 'products', data: data.products },
-      { id: 'plans', data: data.plans },
-      { id: 'transactions', data: data.transactions },
-      { id: 'payouts', data: data.payouts },
-      { id: 'balances', data: data.balances },
+      {
+        id: 'customers',
+        name: 'Customers',
+        data: data.customers,
+        fields: [
+          { id: 'id', name: 'Customer ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'name', name: 'Contact Name', type: 'string', format: 'textFormat' },
+          { id: 'company', name: 'Company', type: 'string', format: 'textFormat' },
+          { id: 'email', name: 'Email', type: 'string', format: 'textFormat' },
+          { id: 'totalInvoiced', name: 'Total Invoiced', type: 'number', format: 'currencyFormat' },
+          { id: 'totalPaid', name: 'Total Paid', type: 'number', format: 'currencyFormat' },
+          { id: 'totalOutstanding', name: 'Outstanding', type: 'number', format: 'currencyFormat' },
+          { id: 'invoiceCount', name: 'Invoice Count', type: 'number', format: 'textFormat' },
+        ] as const,
+        description: 'Customer entities derived from invoice recipients. Each customer aggregates their invoices, payments, and outstanding balances.',
+      },
+      {
+        id: 'invoices',
+        name: 'Invoices',
+        data: data.invoices,
+        fields: [
+          { id: 'id', name: 'Invoice ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'number', name: 'Invoice Number', type: 'string', format: 'textFormat' },
+          { id: 'customerId', name: 'Customer ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'status', name: 'Status', type: 'string', format: 'textFormat' },
+          { id: 'statusGroup', name: 'Status Group', type: 'string', format: 'textFormat' },
+          { id: 'currency', name: 'Currency', type: 'string', format: 'textFormat' },
+          { id: 'paymentTerm', name: 'Payment Term', type: 'string', format: 'textFormat' },
+          { id: 'invoiceDate', name: 'Invoice Date', type: 'date', format: 'dateFormat' },
+          { id: 'dueDate', name: 'Due Date', type: 'date', format: 'dateFormat' },
+          { id: 'total', name: 'Total Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'issuedAmount', name: 'Issued Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'paidAmount', name: 'Paid Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'refundedAmount', name: 'Refunded Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'netCollected', name: 'Net Collected', type: 'number', format: 'currencyFormat' },
+          { id: 'isReceivable', name: 'Is Receivable', type: 'boolean', format: 'textFormat' },
+          { id: 'outstanding', name: 'Outstanding', type: 'number', format: 'currencyFormat' },
+          { id: 'overdueAmount', name: 'Overdue Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'daysOverdue', name: 'Days Overdue', type: 'number', format: 'textFormat' },
+          { id: 'agingBucket', name: 'Aging Bucket', type: 'string', format: 'textFormat' },
+          { id: 'daysToPay', name: 'Days to Pay', type: 'number', format: 'textFormat' },
+          { id: 'taxTotal', name: 'Tax Total', type: 'number', format: 'currencyFormat' },
+        ],
+        description: 'PayPal invoices with payment status, aging, and collection metrics. Links to customers and line items.',
+      },
+      {
+        id: 'invoiceItems',
+        name: 'Invoice Line Items',
+        data: data.invoiceItems,
+        fields: [
+          { id: 'id', name: 'Line Item ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'invoiceId', name: 'Invoice ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'name', name: 'Item Name', type: 'string', format: 'textFormat' },
+          { id: 'unit', name: 'Unit', type: 'string', format: 'textFormat' },
+          { id: 'quantity', name: 'Quantity', type: 'number', format: 'textFormat' },
+          { id: 'unitPrice', name: 'Unit Price', type: 'number', format: 'currencyFormat' },
+          { id: 'gross', name: 'Gross', type: 'number', format: 'currencyFormat' },
+          { id: 'discount', name: 'Discount', type: 'number', format: 'currencyFormat' },
+          { id: 'tax', name: 'Tax', type: 'number', format: 'currencyFormat' },
+          { id: 'lineTotal', name: 'Line Total', type: 'number', format: 'currencyFormat' },
+        ],
+        description: 'Individual line items on invoices with pricing breakdown including discounts and taxes.',
+      },
+      {
+        id: 'invoicePayments',
+        name: 'Invoice Payments & Refunds',
+        data: data.invoicePayments,
+        fields: [
+          { id: 'id', name: 'Payment ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'invoiceId', name: 'Invoice ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'kind', name: 'Type', type: 'string', format: 'textFormat' },
+          { id: 'method', name: 'Method', type: 'string', format: 'textFormat' },
+          { id: 'date', name: 'Date', type: 'date', format: 'dateFormat' },
+          { id: 'amount', name: 'Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'signedAmount', name: 'Signed Amount', type: 'number', format: 'currencyFormat', description: 'Positive for payments, negative for refunds' },
+        ],
+        description: 'All payment and refund transactions linked to invoices. Signed amount enables net calculations.',
+      },
+      {
+        id: 'products',
+        name: 'Products',
+        data: data.products,
+        fields: [
+          { id: 'id', name: 'Product ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'name', name: 'Product Name', type: 'string', format: 'textFormat' },
+          { id: 'type', name: 'Type', type: 'string', format: 'textFormat' },
+          { id: 'category', name: 'Category', type: 'string', format: 'textFormat' },
+          { id: 'description', name: 'Description', type: 'string', format: 'textFormat' },
+          { id: 'createTime', name: 'Created', type: 'date', format: 'dateFormat' },
+          { id: 'updateTime', name: 'Updated', type: 'date', format: 'dateFormat' },
+          { id: 'planCount', name: 'Plan Count', type: 'number', format: 'textFormat' },
+          { id: 'avgMonthlyPrice', name: 'Avg Monthly Price', type: 'number', format: 'currencyFormat' },
+        ],
+        description: 'PayPal catalog products with associated billing plans and pricing metrics.',
+      },
+      {
+        id: 'plans',
+        name: 'Billing Plans',
+        data: data.plans,
+        fields: [
+          { id: 'id', name: 'Plan ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'productId', name: 'Product ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'name', name: 'Plan Name', type: 'string', format: 'textFormat' },
+          { id: 'status', name: 'Status', type: 'string', format: 'textFormat' },
+          { id: 'billingInterval', name: 'Billing Interval', type: 'string', format: 'textFormat' },
+          { id: 'price', name: 'Price', type: 'number', format: 'currencyFormat' },
+          { id: 'monthlyPrice', name: 'Monthly Equivalent', type: 'number', format: 'currencyFormat' },
+          { id: 'trialDays', name: 'Trial Days', type: 'number', format: 'textFormat' },
+          { id: 'setupFee', name: 'Setup Fee', type: 'number', format: 'currencyFormat' },
+        ],
+        description: 'Recurring billing plans linked to products with pricing, intervals, and trial periods.',
+      },
+      {
+        id: 'transactions',
+        name: 'PayPal Transactions',
+        data: data.transactions,
+        fields: [
+          { id: 'id', name: 'Transaction ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'date', name: 'Date', type: 'date', format: 'dateFormat' },
+          { id: 'eventType', name: 'Event Type', type: 'string', format: 'textFormat' },
+          { id: 'status', name: 'Status', type: 'string', format: 'textFormat' },
+          { id: 'direction', name: 'Direction', type: 'string', format: 'textFormat' },
+          { id: 'currency', name: 'Currency', type: 'string', format: 'textFormat' },
+          { id: 'amount', name: 'Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'fee', name: 'Fee', type: 'number', format: 'currencyFormat' },
+          { id: 'net', name: 'Net', type: 'number', format: 'currencyFormat' },
+          { id: 'endingBalance', name: 'Ending Balance', type: 'number', format: 'currencyFormat' },
+          { id: 'counterparty', name: 'Counterparty', type: 'string', format: 'textFormat' },
+          { id: 'note', name: 'Note', type: 'string', format: 'textFormat' },
+          { id: 'eventCode', name: 'Event Code', type: 'string', format: 'textFormat' },
+          { id: 'referenceId', name: 'Reference ID', type: 'string', format: 'textFormat' },
+        ],
+        description: 'Raw PayPal transaction ledger with event types, fees, and running balances.',
+      },
+      {
+        id: 'payouts',
+        name: 'Payouts',
+        data: data.payouts,
+        fields: [
+          { id: 'id', name: 'Payout ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'campaign', name: 'Campaign', type: 'string', format: 'textFormat' },
+          { id: 'recipient', name: 'Recipient', type: 'string', format: 'textFormat' },
+          { id: 'date', name: 'Date', type: 'date', format: 'dateFormat' },
+          { id: 'status', name: 'Status', type: 'string', format: 'textFormat' },
+          { id: 'amount', name: 'Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'fee', name: 'Fee', type: 'number', format: 'currencyFormat' },
+          { id: 'note', name: 'Note', type: 'string', format: 'textFormat' },
+        ],
+        description: 'Outbound payouts to vendors, partners, and teams grouped by campaign.',
+      },
+      {
+        id: 'balances',
+        name: 'Account Balances',
+        data: data.balances,
+        fields: [
+          { id: 'currency', name: 'Currency', type: 'string', format: 'textFormat' },
+          { id: 'total', name: 'Total Balance', type: 'number', format: 'currencyFormat' },
+          { id: 'available', name: 'Available', type: 'number', format: 'currencyFormat' },
+          { id: 'withheld', name: 'Withheld', type: 'number', format: 'currencyFormat' },
+        ],
+        description: 'Real-time PayPal account balances by currency showing available vs withheld funds.',
+      },
+      {
+        id: 'disputes',
+        name: 'Disputes',
+        data: data.disputes,
+        fields: [
+          { id: 'id', name: 'Dispute ID', type: 'string', format: 'textFormat', hide: true },
+          { id: 'createTime', name: 'Created', type: 'date', format: 'dateFormat' },
+          { id: 'updateTime', name: 'Updated', type: 'date', format: 'dateFormat' },
+          { id: 'status', name: 'Status', type: 'string', format: 'textFormat' },
+          { id: 'amount', name: 'Dispute Amount', type: 'number', format: 'currencyFormat' },
+          { id: 'reason', name: 'Reason', type: 'string', format: 'textFormat' },
+          { id: 'channel', name: 'Channel', type: 'string', format: 'textFormat' },
+          { id: 'outcome', name: 'Outcome', type: 'string', format: 'textFormat' },
+          { id: 'signedAmount', name: 'Exposure', type: 'number', format: 'currencyFormat', description: 'Negative value representing financial exposure' },
+        ],
+        description: 'Customer disputes with amounts, reasons, and resolution outcomes. Exposure is negative for cashflow impact.',
+      },
     ],
     relationships: [
-      { from: 'invoices', field: 'customerId', to: 'customers', toField: 'id' },
-      { from: 'invoiceItems', field: 'invoiceId', to: 'invoices', toField: 'id' },
-      { from: 'invoicePayments', field: 'invoiceId', to: 'invoices', toField: 'id' },
-      { from: 'plans', field: 'productId', to: 'products', toField: 'id' },
+      { id: 'invoice-customer', type: 'many-to-one', source: 'invoices.customerId', target: 'customers.id' },
+      { id: 'item-invoice', type: 'many-to-one', source: 'invoiceItems.invoiceId', target: 'invoices.id' },
+      { id: 'payment-invoice', type: 'many-to-one', source: 'invoicePayments.invoiceId', target: 'invoices.id' },
+      { id: 'plan-product', type: 'many-to-one', source: 'plans.productId', target: 'products.id' },
+      { id: 'dispute-transaction', type: 'many-to-one', source: 'disputes.id', target: 'transactions.referenceId' },
     ],
     expressions: [
-      // Invoice calculated fields
-      { source: 'invoices', field: 'netAmount', expression: 'paidAmount - refundedAmount' },
-      { source: 'invoices', field: 'collectionRate', expression: 'paidAmount / total' },
+      // Invoice calculated measures
+      { id: 'invoices.netAmount', source: 'invoices', field: 'netAmount', isMeasure: true, expression: 'paidAmount - refundedAmount', format: 'currencyFormat' },
+      { id: 'invoices.collectionRate', source: 'invoices', field: 'collectionRate', isMeasure: true, expression: 'paidAmount / total', format: 'percentageFormat' },
+      { id: 'invoices.overdueShare', source: 'invoices', field: 'overdueShare', isMeasure: true, expression: 'overdueAmount / issuedAmount', format: 'percentageFormat' },
+      { id: 'invoices.refundRate', source: 'invoices', field: 'refundRate', isMeasure: true, expression: 'refundedAmount / paidAmount', format: 'percentageFormat' },
       // Customer aggregates
-      { source: 'customers', field: 'totalInvoiced', expression: 'sum(invoices.issuedAmount)' },
-      { source: 'customers', field: 'totalPaid', expression: 'sum(invoices.paidAmount)' },
-      { source: 'customers', field: 'totalOutstanding', expression: 'sum(invoices.outstanding)' },
-      { source: 'customers', field: 'invoiceCount', expression: 'count(invoices.id)' },
+      { id: 'customers.totalInvoiced', source: 'customers', field: 'totalInvoiced', isMeasure: true, expression: 'sum(invoices.issuedAmount)', format: 'currencyFormat' },
+      { id: 'customers.totalPaid', source: 'customers', field: 'totalPaid', isMeasure: true, expression: 'sum(invoices.paidAmount)', format: 'currencyFormat' },
+      { id: 'customers.totalOutstanding', source: 'customers', field: 'totalOutstanding', isMeasure: true, expression: 'sum(invoices.outstanding)', format: 'currencyFormat' },
+      { id: 'customers.invoiceCount', source: 'customers', field: 'invoiceCount', isMeasure: true, expression: 'count(invoices.id)', format: 'textFormat' },
+      { id: 'customers.disputeExposureRatio', source: 'customers', field: 'disputeExposureRatio', isMeasure: true, expression: 'sum(disputes.signedAmount) / sum(invoices.issuedAmount)', format: 'percentageFormat' },
       // Product aggregates
-      { source: 'products', field: 'planCount', expression: 'count(plans.id)' },
-      { source: 'products', field: 'avgMonthlyPrice', expression: 'avg(plans.monthlyPrice)' },
+      { id: 'products.planCount', source: 'products', field: 'planCount', isMeasure: true, expression: 'count(plans.id)', format: 'textFormat' },
+      { id: 'products.avgMonthlyPrice', source: 'products', field: 'avgMonthlyPrice', isMeasure: true, expression: 'avg(plans.monthlyPrice)', format: 'currencyFormat' },
+      // Dispute measures
+      { id: 'disputes.totalExposure', source: 'disputes', field: 'totalExposure', isMeasure: true, expression: 'sum(signedAmount)', format: 'currencyFormat' },
+      { id: 'disputes.disputeCount', source: 'disputes', field: 'disputeCount', isMeasure: true, expression: 'count(id)', format: 'textFormat' },
     ],
     calendars: [
-      { name: 'invoiceDate', field: 'invoiceDate' },
-      { name: 'dueDate', field: 'dueDate' },
-      { name: 'paymentDate', field: 'date', source: 'invoicePayments' },
-      { name: 'transactionDate', field: 'date' },
+      {
+        id: 'invoiceDate',
+        label: 'Invoice Date',
+        range: {
+          from: { type: 'date', value: '2020-01-01' },
+          to: { type: 'date', value: '2030-12-31' },
+        },
+        fragments: ['year', 'quarter', 'month', 'week', 'day', 'monthOfYear', 'dayOfWeek', 'weekOfMonth'],
+      },
+      {
+        id: 'dueDate',
+        label: 'Due Date',
+        range: {
+          from: { type: 'date', value: '2020-01-01' },
+          to: { type: 'date', value: '2030-12-31' },
+        },
+        fragments: ['year', 'quarter', 'month', 'week', 'day', 'monthOfYear', 'dayOfWeek', 'weekOfMonth'],
+      },
+      {
+        id: 'paymentDate',
+        label: 'Payment Date',
+        range: {
+          from: { type: 'date', value: '2020-01-01' },
+          to: { type: 'date', value: '2030-12-31' },
+        },
+        fragments: ['year', 'quarter', 'month', 'week', 'day', 'monthOfYear', 'dayOfWeek', 'weekOfMonth'],
+      },
+      {
+        id: 'transactionDate',
+        label: 'Transaction Date',
+        range: {
+          from: { type: 'date', value: '2020-01-01' },
+          to: { type: 'date', value: '2030-12-31' },
+        },
+        fragments: ['year', 'quarter', 'month', 'week', 'day', 'monthOfYear', 'dayOfWeek', 'weekOfMonth'],
+      },
+      {
+        id: 'disputeCreateDate',
+        label: 'Dispute Created',
+        range: {
+          from: { type: 'date', value: '2020-01-01' },
+          to: { type: 'date', value: '2030-12-31' },
+        },
+        fragments: ['year', 'quarter', 'month', 'week', 'day', 'monthOfYear', 'dayOfWeek', 'weekOfMonth'],
+      },
     ],
+  };
+}
+
+// Backwards compatible export
+export function createDataSources(data: DashboardData) {
+  const studio = buildStudioData(data);
+  return {
+    sources: studio.sources.map(s => ({ id: s.id, data: s.data })),
+    relationships: studio.relationships,
+    expressions: studio.expressions,
+    calendars: studio.calendars,
   };
 }

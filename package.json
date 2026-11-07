@@ -23,11 +23,16 @@
     "remotion:render": "remotion render src/video/Video.tsx src/video/out.mp4"
   },
   "dependencies": {
+    "@bryntum/gantt": "npm:@bryntum/gantt-trial@^7.3.8",
+    "@bryntum/gantt-react": "^7.3.8",
     "@channel3/sdk": "^4.0.0",
     "@paypal/agent-toolkit": "^1.0.0",
     "@paypal/paypal-js": "^8.0.0",
+    "@renderinc/sdk": "^1.8.0",
     "ag-grid-community": "^32.0.0",
     "ag-grid-react": "^32.0.0",
+    "ag-studio": "^3.1.0",
+    "ag-studio-react": "^3.1.0",
     "autoprefixer": "^10.6.2",
     "next": "15.0.0",
     "react": "18.3.1",
