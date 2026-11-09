@@ -1,0 +1,337 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+  /* PayOps Dark Fintech Palette */
+  --bg-canvas: #090A0F;
+  --bg-card: #11131A;
+  --bg-hover: #161922;
+  --bg-elevated: #1A1D26;
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --paypal-blue: #0070BA;
+  --paypal-blue-light: #009CDE;
+  --paypal-blue-glow: rgba(0, 112, 186, 0.3);
+  --emerald: #00C851;
+  --amber: #FFB300;
+  --crimson: #FF3B30;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-muted: rgba(255, 255, 255, 0.48);
+  --text-disabled: rgba(255, 255, 255, 0.24);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--paypal-blue);
+  outline-offset: 2px;
+}
+
+/* Status pills */
+.status-pill {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-medium tabular-nums;
+}
+
+.status-pill--connected {
+  background: rgba(0, 200, 81, 0.15);
+  color: var(--emerald);
+  border: 1px solid rgba(0, 200, 81, 0.3);
+}
+
+.status-pill--warning {
+  background: rgba(255, 179, 0, 0.15);
+  color: var(--amber);
+  border: 1px solid rgba(255, 179, 0, 0.3);
+}
+
+.status-pill--error {
+  background: rgba(255, 59, 48, 0.15);
+  color: var(--crimson);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.status-pill--neutral {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-hairline);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: 12px;
+}
+
+.card-hover {
+  @apply card transition-all duration-200;
+}
+
+.card-hover:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+
+/* Buttons */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium text-sm transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--bg-canvas)];
+}
+
+.btn-primary {
+  @apply btn bg-[var(--paypal-blue)] text-white hover:bg-[var(--paypal-blue-light)] focus:ring-[var(--paypal-blue)];
+}
+
+.btn-secondary {
+  @apply btn bg-[var(--bg-elevated)] text-[var(--text-primary)] border border-[var(--border-hairline)] hover:bg-[var(--bg-hover)] hover:border-[var(--border-strong)] focus:ring-[var(--border-strong)];
+}
+
+.btn-ghost {
+  @apply btn bg-transparent text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] hover:text-[var(--text-primary)] focus:ring-[var(--border-strong)];
+}
+
+.btn-danger {
+  @apply btn bg-[var(--crimson)] text-white hover:opacity-90 focus:ring-[var(--crimson)];
+}
+
+.btn-success {
+  @apply btn bg-[var(--emerald)] text-white hover:opacity-90 focus:ring-[var(--emerald)];
+}
+
+/* Inputs */
+.input {
+  @apply w-full px-3 py-2 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-hairline)] text-[var(--text-primary)] placeholder-[var(--text-disabled)] transition-all duration-150;
+  @apply focus:border-[var(--paypal-blue)] focus:ring-2 focus:ring-[var(--paypal-blue-glow)] focus:outline-none;
+}
+
+.input-error {
+  @apply border-[var(--crimson)] focus:border-[var(--crimson)] focus:ring-[rgba(255,59,48,0.3)];
+}
+
+/* Tabs */
+.tab-nav {
+  @apply flex gap-1 bg-[var(--bg-card)] p-1 rounded-lg border border-[var(--border-hairline)];
+}
+
+.tab-btn {
+  @apply px-4 py-2 rounded-md text-sm font-medium transition-all duration-150;
+  @apply text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)];
+}
+
+.tab-btn-active {
+  @apply text-[var(--paypal-blue)] bg-[var(--bg-elevated)] shadow-sm;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium tabular-nums;
+}
+
+.badge-autonomous {
+  background: rgba(0, 200, 81, 0.15);
+  color: var(--emerald);
+  border: 1px solid rgba(0, 200, 81, 0.3);
+}
+
+.badge-guarded {
+  background: rgba(255, 179, 0, 0.15);
+  color: var(--amber);
+  border: 1px solid rgba(255, 179, 0, 0.3);
+}
+
+.badge-blocked {
+  background: rgba(255, 59, 48, 0.15);
+  color: var(--crimson);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.badge-neutral {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-hairline);
+}
+
+/* Drawer */
+.drawer {
+  @apply fixed inset-0 z-50 flex;
+}
+
+.drawer-backdrop {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm;
+}
+
+.drawer-content {
+  @apply w-full max-w-2xl bg-[var(--bg-card)] border-l border-[var(--border-hairline)] overflow-y-auto;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Webhook audit drawer */
+.audit-entry {
+  @apply p-3 rounded-lg border border-[var(--border-hairline)] bg-[var(--bg-elevated)] font-mono text-xs;
+}
+
+.audit-entry-request {
+  @apply bg-[rgba(0,112,186,0.1)] border-[rgba(0,112,186,0.3)];
+}
+
+.audit-entry-response {
+  @apply bg-[rgba(0,200,81,0.1)] border-[rgba(0,200,81,0.3)];
+}
+
+.audit-entry-error {
+  @apply bg-[rgba(255,59,48,0.1)] border-[rgba(255,59,48,0.3)];
+}
+
+/* QR Code modal */
+.qr-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply h-2 bg-[var(--bg-elevated)] rounded-full overflow-hidden;
+}
+
+.progress-fill {
+  @apply h-full bg-[var(--paypal-blue)] transition-all duration-300;
+}
+
+/* Ledger/Transaction rows */
+.ledger-row {
+  @apply grid grid-cols-12 gap-4 px-4 py-3 border-b border-[var(--border-hairline)];
+}
+
+.ledger-row:hover {
+  @apply bg-[var(--bg-hover)];
+}
+
+.ledger-row-header {
+  @apply font-semibold text-[var(--text-secondary)];
+}
+
+/* SOW parser highlights */
+.sow-highlight {
+  @apply bg-[rgba(0,112,186,0.2)] px-1 rounded;
+}
+
+.sow-highlight-item {
+  @apply bg-[rgba(0,200,81,0.2)] px-1 rounded;
+}
+
+.sow-highlight-budget {
+  @apply bg-[rgba(255,179,0,0.2)] px-1 rounded;
+}
+
+.sow-highlight-date {
+  @apply bg-[rgba(255,59,48,0.2)] px-1 rounded;
+}
+
+/* Channel3 product card */
+.product-card {
+  @apply card-hover p-4 flex flex-col h-full;
+}
+
+.product-card-image {
+  @apply w-full h-40 object-cover rounded-lg mb-3 bg-[var(--bg-elevated)];
+}
+
+.product-card-title {
+  @apply font-medium text-sm line-clamp-2 mb-2;
+}
+
+.product-card-meta {
+  @apply flex items-center gap-2 text-xs text-[var(--text-muted)] mb-2;
+}
+
+.product-card-price {
+  @apply font-mono font-semibold text-lg text-[var(--emerald)];
+}
+
+.product-card-retailer {
+  @apply badge badge-neutral;
+}
+
+/* AG Studio theme overrides */
+.ag-theme-quartz {
+  --ag-font-family: var(--font-sans);
+  --ag-font-size: 13px;
+  --ag-header-height: 40px;
+  --ag-row-height: 44px;
+  --ag-background-color: var(--bg-card);
+  --ag-foreground-color: var(--text-primary);
+  --ag-header-background-color: var(--bg-elevated);
+  --ag-border-color: var(--border-hairline);
+  --ag-row-hover-color: var(--bg-hover);
+  --ag-selected-row-background-color: rgba(0, 112, 186, 0.15);
+  --ag-row-selected-border-color: var(--paypal-blue);
+}
+
+/* Bryntum Gantt theme */
+.bryntum-gantt {
+  --bryntum-bg: var(--bg-card);
+  --bryntum-border: var(--border-hairline);
+  --bryntum-text: var(--text-primary);
+  --bryntum-header-bg: var(--bg-elevated);
+}

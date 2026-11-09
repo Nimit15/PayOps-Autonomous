@@ -19,6 +19,7 @@ import {
   type ShippingTracker,
   type Transaction,
 } from './paypal-client';
+import { getDemoDashboardData, isDemoMode } from './demo-data';
 
 const DAY_MS = 86_400_000;
 
@@ -322,6 +323,11 @@ export interface DashboardData {
 }
 
 export async function getDashboardData(asOf = new Date()): Promise<DashboardData> {
+  // Use demo data when DEMO_MODE is true (for judges, E2E tests, and local development)
+  if (isDemoMode()) {
+    return getDemoDashboardData(asOf);
+  }
+
   const [products, plans, invoices, transactions, balances, disputes] = await Promise.all([
     listProducts(),
     listPlans(),

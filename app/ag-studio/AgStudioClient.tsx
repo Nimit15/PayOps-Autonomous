@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback, Suspense } from 'react';
+import NextDynamic from 'next/dynamic';
 
 // Dynamically import ag-studio React components to avoid SSR issues
 const AgStudioProvider = (await import('ag-studio-react')).AgStudioProvider;
@@ -12,8 +13,13 @@ import { AgStudioAiModule, createAiHarness } from 'ag-studio';
 import type { AgAiHarnessSetup, AgAiHarnessDefaults } from 'ag-studio';
 import type { AgDataSourcesDefinition, AgPanelConfig } from 'ag-studio';
 import type { AgRegistry } from 'ag-studio-react';
-import { buildStudioData, type DashboardData, getDashboardData } from '@/lib/dashboard-data';
-import { listDisputes, createInvoice, createOrder, sendInvoice, listInvoices, listProducts, listPlans, captureOrder, getBalances, searchTransactions } from '@/lib/paypal-client';
+import { buildStudioData, type DashboardData } from '@/lib/dashboard-data';
+
+// Counterfactual Simulator Component (shared with /invoicing page)
+const CounterfactualSimulator = NextDynamic(
+  () => import('@/app/invoicing/CounterfactualSimulator').then(mod => mod.CounterfactualSimulator),
+  { ssr: false, loading: () => <div className="h-64 flex items-center justify-center text-gray-400">Loading simulator...</div> }
+);
 
 // Simple LLM adapter using @paypal/agent-toolkit for PayPal operations
 // In production, replace with Anthropic/OpenAI adapter
@@ -74,11 +80,11 @@ export function AgStudioClient() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // In production, this would call an API route
-        // For now, we'll build empty studio data structure
-        const { buildStudioData, getDashboardData } = await import('@/lib/dashboard-data');
-        const dashboardData = await getDashboardData();
-        setStudioData(buildStudioData(dashboardData) as AgDataSourcesDefinition<AgRegistry>);
+        // Call API route to get AG Studio data
+        const res = await fetch('/api/ag-studio/data');
+        if (!res.ok) throw new Error('Failed to fetch AG Studio data');
+        const studioData = await res.json();
+        setStudioData(studioData as AgDataSourcesDefinition<AgRegistry>);
       } catch (error) {
         console.error('Failed to fetch dashboard data:', error);
       }
@@ -142,7 +148,7 @@ export function AgStudioClient() {
   return (
     <AgStudioProvider modules={[AgStudioAiModule]}>
       <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-        {/* Header */}
+        {/* Header with Counterfactual Simulator */}
         <header className="bg-gray-900 text-white px-6 py-4 border-b border-gray-700">
           <div className="max-w-full mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
@@ -159,6 +165,9 @@ export function AgStudioClient() {
             </div>
           </div>
         </header>
+
+        {/* Counterfactual Simulator Panel */}
+        <CounterfactualSimulator />
 
         {/* Studio */}
         <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>

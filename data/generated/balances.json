@@ -1,50 +1,50 @@
 [
   {
     "currency": "USD",
-    "total": 92622,
-    "available": 83359.8,
-    "withheld": 9262.2
+    "total": 50432,
+    "available": 42362.88,
+    "withheld": 8069.12
   },
   {
     "currency": "EUR",
-    "total": 91226.28,
-    "available": 74805.55,
-    "withheld": 16420.73
+    "total": 71449.04,
+    "available": 57159.23,
+    "withheld": 14289.81
   },
   {
     "currency": "GBP",
-    "total": 24678.81,
-    "available": 21964.14,
-    "withheld": 2714.67
+    "total": 52492.34,
+    "available": 46718.18,
+    "withheld": 5774.16
   },
   {
     "currency": "CAD",
-    "total": 115083.2,
-    "available": 93217.39,
-    "withheld": 21865.81
+    "total": 115848.88,
+    "available": 100788.53,
+    "withheld": 15060.35
   },
   {
     "currency": "AUD",
-    "total": 111376.48,
-    "available": 93556.24,
-    "withheld": 17820.24
+    "total": 98313.6,
+    "available": 80617.15,
+    "withheld": 17696.45
   },
   {
     "currency": "JPY",
-    "total": 2936329.5,
-    "available": 2613333.25,
-    "withheld": 322996.25
+    "total": 8111272,
+    "available": 7300144.8,
+    "withheld": 811127.2
   },
   {
     "currency": "CHF",
-    "total": 52945.2,
-    "available": 43415.06,
-    "withheld": 9530.14
+    "total": 12514.48,
+    "available": 11388.18,
+    "withheld": 1126.3
   },
   {
     "currency": "SGD",
-    "total": 42027.76,
-    "available": 39506.09,
-    "withheld": 2521.67
+    "total": 51468.06,
+    "available": 41174.45,
+    "withheld": 10293.61
   }
 ]

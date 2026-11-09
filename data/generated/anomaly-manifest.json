@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-07T15:22:20.863Z",
+  "generatedAt": "2026-11-07T20:19:57.683Z",
   "totalTransactions": 250,
-  "totalRecords": 826,
+  "totalRecords": 812,
   "anomalies": [
     {
       "id": "A1",
@@ -249,11 +249,11 @@
     },
     {
       "name": "invoiceItems",
-      "count": 316
+      "count": 307
     },
     {
       "name": "invoicePayments",
-      "count": 41
+      "count": 40
     },
     {
       "name": "products",
@@ -269,7 +269,7 @@
     },
     {
       "name": "payouts",
-      "count": 33
+      "count": 29
     },
     {
       "name": "balances",
