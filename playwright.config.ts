@@ -65,14 +65,15 @@ export default defineConfig({
     },
   ],
 
-  /* Run your local dev server before starting the tests */
+  /* Run production server for E2E tests */
   webServer: {
-    command: 'npm run dev',
+    command: 'npm run build && npm run start',
     url: 'http://localhost:3000',
-    reuseExistingServer: true,
-    timeout: 10000,
+    reuseExistingServer: !process.env.CI,
+    timeout: 120000,
     env: {
       DEMO_MODE: 'true',
+      NODE_ENV: 'production',
     },
   },
 
