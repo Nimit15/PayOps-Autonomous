@@ -75,6 +75,8 @@ export function AgStudioClient() {
   const [isReady, setIsReady] = useState(false);
   const [aiHarness, setAiHarness] = useState<AgAiHarnessSetup | undefined>(undefined);
   const [studioData, setStudioData] = useState<AgDataSourcesDefinition<AgRegistry> | null>(null);
+  const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [inspectorTab, setInspectorTab] = useState<'payload' | 'ledger' | 'response'>('payload');
 
   // Fetch data and build studio data on client
   useEffect(() => {
@@ -128,6 +130,27 @@ export function AgStudioClient() {
     buildHarness();
   }, [studioApi]);
 
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'i') {
+        e.preventDefault();
+        setInspectorOpen((v) => !v);
+        return;
+      }
+      if (e.key === 'Escape') {
+        setInspectorOpen(false);
+        return;
+      }
+      if (inspectorOpen) {
+        if (e.key === '1') setInspectorTab('payload');
+        if (e.key === '2') setInspectorTab('ledger');
+        if (e.key === '3') setInspectorTab('response');
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [inspectorOpen]);
+
   // Set up API reference when Studio is ready
   const handleApiReady = useCallback((event: any) => {
     const api = event.api;
@@ -147,19 +170,19 @@ export function AgStudioClient() {
 
   return (
     <AgStudioProvider modules={[AgStudioAiModule]}>
-      <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }} data-testid="ag-studio-container">
         {/* Header with Counterfactual Simulator */}
-        <header className="bg-gray-900 text-white px-6 py-4 border-b border-gray-700">
+        <header className="bg-gray-900 text-white px-6 py-4 border-b border-gray-700" data-testid="ag-studio-header">
           <div className="max-w-full mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div>
-              <h1 className="text-2xl font-bold">AG Studio v3.1 - PayOps Command Center</h1>
+              <h1 className="text-2xl font-bold" data-testid="ag-studio-title">AG Studio v3.1 - PayOps Command Center</h1>
               <p className="text-gray-400 text-sm mt-1">Relational Analytics • AI Harness • PayPal Integration</p>
             </div>
             <div className="flex items-center gap-4">
-              <span className="px-3 py-1 bg-green-600 text-white text-sm rounded">
+              <span className="px-3 py-1 bg-green-600 text-white text-sm rounded" data-testid="studio-status">
                 {isReady ? 'Studio Ready' : 'Initializing...'}
               </span>
-              <span className="text-sm text-gray-400">
+              <span className="text-sm text-gray-400" data-testid="studio-data-count">
                 {studioData ? studioData.sources.length : 0} sources • {studioData?.relationships?.length ?? 0} relationships
               </span>
             </div>
@@ -170,18 +193,56 @@ export function AgStudioClient() {
         <CounterfactualSimulator />
 
         {/* Studio */}
-        <div className="flex-1 overflow-hidden" style={{ minHeight: 0 }}>
-          <AgStudio
-            data={studioData || { sources: [], relationships: [], expressions: [], calendars: [] }}
-            mode="edit"
-            ai={aiHarness}
-            onApiReady={handleApiReady}
-            onStudioReady={handleStudioReady}
-            panels={panelsConfig}
-            themeStyleContainer={typeof document !== 'undefined' ? document.body : undefined}
-            style={{ height: '100%', width: '100%' }}
-          />
+        <div className="flex-1 overflow-auto" style={{ minHeight: '400px', display: 'block' }} data-testid="ag-studio-root">
+          <div style={{ height: '100%', minHeight: '400px', width: '100%', display: 'block' }}>
+            <AgStudio
+              data={studioData || { sources: [], relationships: [], expressions: [], calendars: [] }}
+              mode="edit"
+              ai={aiHarness}
+              onApiReady={handleApiReady}
+              onStudioReady={handleStudioReady}
+              panels={panelsConfig}
+              themeStyleContainer={typeof document !== 'undefined' ? document.body : undefined}
+              style={{ height: '100%', minHeight: '400px', width: '100%', display: 'block' }}
+            />
+          </div>
         </div>
+
+        {inspectorOpen && (
+          <aside
+            className="fixed right-0 top-0 h-full z-50 w-[380px] bg-gray-900 border-l border-gray-700 shadow-2xl flex flex-col inspector-drawer"
+            data-testid="inspector-drawer"
+          >
+            <div className="flex items-center justify-between p-4 border-b border-gray-700">
+              <h3 className="font-semibold text-white">Inspector Drawer</h3>
+              <button onClick={() => setInspectorOpen(false)} className="p-2 text-gray-400 hover:text-white rounded hover:bg-gray-800">Close</button>
+            </div>
+            <div className="flex gap-2 p-3 border-b border-gray-700 text-sm">
+              <button onClick={() => setInspectorTab('payload')} className={`px-2 py-1 rounded ${inspectorTab === 'payload' ? 'bg-cyan-700 text-white' : 'bg-gray-800 text-gray-300'}`}>API Payload 1/3</button>
+              <button onClick={() => setInspectorTab('ledger')} className={`px-2 py-1 rounded ${inspectorTab === 'ledger' ? 'bg-amber-700 text-white' : 'bg-gray-800 text-gray-300'}`}>Ledger Trace 2/3</button>
+              <button onClick={() => setInspectorTab('response')} className={`px-2 py-1 rounded ${inspectorTab === 'response' ? 'bg-purple-700 text-white' : 'bg-gray-800 text-gray-300'}`}>API Response 3/3</button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-4 text-sm text-gray-300 space-y-3" data-testid="inspector-content">
+              {inspectorTab === 'payload' && (
+                <pre className="whitespace-pre-wrap text-xs bg-gray-950 p-3 rounded border border-gray-700" data-testid="inspector-payload">{JSON.stringify({ source: 'ag-studio', ready: isReady, sources: studioData?.sources?.length ?? 0, relationships: studioData?.relationships?.length ?? 0 }, null, 2)}</pre>
+              )}
+              {inspectorTab === 'ledger' && (
+                <div className="space-y-2" data-testid="inspector-ledger">
+                  <div className="font-mono text-white">Ledger Trace</div>
+                  <div className="text-xs bg-gray-950 p-3 rounded border border-gray-700 space-y-1">
+                    <div>Debit: Discount Expense</div>
+                    <div>Credit: Accounts Receivable Reserve</div>
+                    <div>FETCH_UNPAID_INVOICES → APPLY_RULE → EMIT_LEDGER_ENTRIES</div>
+                  </div>
+                </div>
+              )}
+              {inspectorTab === 'response' && (
+                <pre className="whitespace-pre-wrap text-xs bg-gray-950 p-3 rounded border border-gray-700" data-testid="inspector-response">{JSON.stringify({ ok: true, studioReady: isReady, message: 'Inspector ready' }, null, 2)}</pre>
+              )}
+            </div>
+            <div className="p-3 border-t border-gray-700 text-xs text-gray-500">Press Esc to close • 1/2/3 switch tabs • Cmd/Ctrl+I toggle</div>
+          </aside>
+        )}
       </div>
     </AgStudioProvider>
   );

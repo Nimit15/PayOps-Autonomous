@@ -19,7 +19,11 @@ import {
   type ShippingTracker,
   type Transaction,
 } from './paypal-client';
-import { getDemoDashboardData, isDemoMode } from './demo-data';
+import { getDemoDashboardData } from './demo-data';
+import { isDemoMode } from './is-demo-mode';
+
+// Re-export isDemoMode for other modules
+export { isDemoMode } from './is-demo-mode';
 
 const DAY_MS = 86_400_000;
 

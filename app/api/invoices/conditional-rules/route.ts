@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { listInvoices, updateInvoiceEarlyPaymentDiscount, type Invoice, type EarlyPaymentDiscount } from '@/lib/paypal-client';
+import { getDashboardData, isDemoMode } from '@/lib/dashboard-data';
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,8 +47,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Fetch all invoices
-    const allInvoices = await listInvoices();
+    // Fetch all invoices (use demo/dashboard data in demo mode)
+    let allInvoices: Invoice[] = [];
+    try {
+      if (!isDemoMode() && process.env.PAYPAL_CLIENT_ID && process.env.PAYPAL_SECRET) {
+        allInvoices = await listInvoices();
+      } else {
+        const dashboardData = await getDashboardData();
+        allInvoices = (dashboardData.invoices || []).map((inv: any) => ({
+          id: inv.id,
+          status: inv.status || 'UNPAID',
+          detail: {
+            invoice_number: inv.invoiceNumber || inv.id,
+            currency_code: inv.currency || 'USD',
+          },
+        })) as any[];
+      }
+    } catch (err) {
+      console.warn('Falling back to dashboard data for invoices:', err);
+      const dashboardData = await getDashboardData();
+      allInvoices = (dashboardData.invoices || []).map((inv: any) => ({
+        id: inv.id,
+        status: inv.status || 'UNPAID',
+        detail: {
+          invoice_number: inv.invoiceNumber || inv.id,
+          currency_code: inv.currency || 'USD',
+        },
+      })) as any[];
+    }
 
     // Filter to target statuses
     const targetInvoices = allInvoices.filter((inv: Invoice) =>

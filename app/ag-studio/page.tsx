@@ -13,5 +13,9 @@ const AgStudioClientOnly = NextDynamic(
 );
 
 export default function AgStudioPage() {
-  return <AgStudioClientOnly />;
+  return (
+    <div data-testid="ag-studio-container" style={{height: '100vh'}}>
+      <AgStudioClientOnly />
+    </div>
+  );
 }

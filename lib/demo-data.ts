@@ -1,6 +1,7 @@
 // Demo Data Loader - Loads generated dataset for judge scenarios and offline mode
 // Provides 250-transaction multi-currency dataset with 18 planted anomalies
 
+import 'server-only';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import type { DashboardData } from './dashboard-data';

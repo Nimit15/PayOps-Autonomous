@@ -13,5 +13,9 @@ const GanttClientOnly = NextDynamic(
 );
 
 export default function GanttPage() {
-  return <GanttClientOnly />;
+  return (
+    <div data-testid="gantt-container" style={{height: '100vh'}}>
+      <GanttClientOnly />
+    </div>
+  );
 }
